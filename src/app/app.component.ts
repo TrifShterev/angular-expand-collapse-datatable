@@ -23,8 +23,7 @@ export class AppComponent {
     {
       "time": "12.12.2021 12:22",
       "changes": "Change made to practice positions and basic information ",
-      "by": "Firstname.Lastname@email.com",
-      "address": 1.0079,
+      "by": "Firstname.Lastname@email.com",      
       "isExpanded": false,
       "details": [
         {
@@ -35,8 +34,8 @@ export class AppComponent {
         },
         {
           "namepp": "Price positions",
-          "oldpp": [{"currency":"GBP", "vat":"22%","quantity": 1}],
-          "newpp": [{"currency":"EUR", "vat":"24%","quantity": 2}]
+          "oldpp": {"currency":"GBP", "vat":"22%","quantity": 1},
+          "newpp": {"currency":"EUR", "vat":"24%","quantity": 2}
         }
       ]
     },
@@ -44,7 +43,6 @@ export class AppComponent {
       "time": "12.11.2022 12:22",
       "changes": "Change made to Basic information ",
       "by": "Firstname.Lastname@email.com",
-      "address": 1.0079,
       "isExpanded": false,
       "details": [
         {
@@ -55,8 +53,8 @@ export class AppComponent {
         },
         {
           "namepp": "Price positions",
-          "oldpp": [{"currency":"BG", "vat":"20%","quantity": 2}],
-          "newpp": [{"currency":"EUR", "vat":"24%","quantity": 1}]
+          "oldpp": {"currency":"BG", "vat":"20%","quantity": 2},
+          "newpp": {"currency":"EUR", "vat":"24%","quantity": 1}
         }
       ]
     },
@@ -64,7 +62,6 @@ export class AppComponent {
       "time": "12.11.2022 12:22",
       "changes": "Change made to Basic information ",
       "by": "Firstname.Lastname@email.com",
-      "address": 1.0079,
       "isExpanded": false,
       "details": [
         {
@@ -75,27 +72,27 @@ export class AppComponent {
         },
         {
           "namepp": "Price positions",
-          "oldpp": [{"currency":"BG", "vat":"20%","quantity": 2}],
-          "newpp": [{"currency":"EUR", "vat":"24%","quantity": 1}]
+          "oldpp": {"currency":"BG", "vat":"20%","quantity": 2},
+          "newpp": {"currency":"EUR", "vat":"24%","quantity": 1}
         }
       ]
     }
   ];
 
 
-  dataStudentsList = new MatTableDataSource();
-  displayedStudentsColumnsList: string[] = ['Time', 'Changes', 'By', 'address', 'Details'];
+  dataList = new MatTableDataSource();
+  displayedColumnsList: string[] = ['Time', 'Changes', 'By', 'Details'];
 
 
   ngOnInit() {
-    this.dataStudentsList.data = this.FRAME_DATA;
+    this.dataList.data = this.FRAME_DATA;
   }
 
-  // Toggel Rows
+  // Toggle All Rows
   toggleTableRows() {
     this.isTableExpanded = !this.isTableExpanded;
 
-    this.dataStudentsList.data.forEach((row: any) => {
+    this.dataList.data.forEach((row: any) => {
       row.isExpanded = this.isTableExpanded;
     })
   }

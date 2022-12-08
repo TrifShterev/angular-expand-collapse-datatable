@@ -5,10 +5,10 @@
 
   <!-- Master Toggle Button -->
   <div style="text-align: end;padding: 10px 104px;">
-    <a mat-raised-button href="javascript:void(0)" (click)="toggleTableRows()" color="primary">View All</a>
+    <a mat-raised-button href="javascript:void(0)" (click)="toggleTableRows()" color="primary">{{isTableExpanded ? 'Colapse All':'View All'}}</a>
   </div>
 
-  <table mat-table [dataSource]="dataStudentsList" multiTemplateDataRows>
+  <table mat-table [dataSource]="dataList" multiTemplateDataRows>
 
     <ng-container matColumnDef="Time">
       <th mat-header-cell *matHeaderCellDef> Time </th>
@@ -24,43 +24,27 @@
     <ng-container matColumnDef="By">
       <th mat-header-cell *matHeaderCellDef> By </th>
       <td mat-cell *matCellDef="let element"> {{element.by}} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef> Address </th>
-      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
-    </ng-container>
-
+    </ng-container>   
 
     <ng-container matColumnDef="Details">
       <th mat-header-cell *matHeaderCellDef> Details </th>
       <td mat-cell *matCellDef="let element">
-        <a mat-button href="javascript:void()" (click)="element.isExpanded = !element.isExpanded">View
-          More</a>
+        <a mat-button href="javascript:void()" (click)="element.isExpanded = !element.isExpanded">{{element.isExpanded ? 'View Less':'View More'}}</a>
       </td>
     </ng-container>
 
 
     <!-- Template for details row -->
     <ng-container matColumnDef="expandedDetail">
-      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedStudentsColumnsList.length">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumnsList.length">
 
-        <div class="row student-element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
+        <div class="row element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
           <mat-list>
             <div mat-subheader>Subjects of {{element.changes}}</div>
             <mat-list-item *ngFor="let item of element.details">
               <div mat-line>{{item.nameifrs}}</div>
-              <div mat-line>Field:{{item.field}} Old: {{item.old}} New: {{item.new}}</div>
-
-              <br>
-              <div mat-line>{{item.namepp}}</div>
-            <!-- <mat-list-item *ngFor="let oldItem of element.details.oldpp">
-            <div mat-line>OldData Currency: {{olditem.currency}} | VAT: {{oldItem.vat}} | Quantitiy: {{oldItem.quantity</div>          
-          </mat-list-item>
-        <mat-list-item *ngFor="let newItem of element.details.newpp">
-        <div mat-line>NewDATA Currency: {{newItem.currency}} | VAT: {{newItem.vat}} | Quantitiy: {{newItem.quantity</div>          
-      </mat-list-item> -->
+              <div mat-line>Field:{{item.field}} Old: {{item.old}} New: {{item.new}}</div>              
+              <div mat-line>{{item.namepp}}</div>        
             </mat-list-item>
           </mat-list>
         </div>
@@ -69,12 +53,12 @@
     </ng-container>
 
 
-    <tr mat-header-row *matHeaderRowDef="displayedStudentsColumnsList;sticky: true"></tr>
-    <tr mat-row *matRowDef="let element; columns: displayedStudentsColumnsList;" class="student-element-row"
-      [class.student-expanded-row]="element.isExpanded"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsList;sticky: true"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumnsList;" class="element-row"
+      [class.expanded-row]="element.isExpanded"></tr>
 
     <!-- Extra row to show detail content column -->
-    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="student-detail-row"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 
   </table>
 

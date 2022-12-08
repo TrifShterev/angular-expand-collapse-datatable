@@ -2,23 +2,23 @@ table {
     width: 100%;
   }
   
-  tr.student-detail-row {
+  tr.detail-row {
     height: 0;
   }
   
-  tr.student-element-row:not(.student-expanded-row):hover {
+  tr.element-row:not(.student-expanded-row):hover {
     background: whitesmoke;
   }
   
-  tr.student-element-row:not(.student-expanded-row):active {
+  tr.element-row:not(.student-expanded-row):active {
     background: #efefef;
   }
   
-  .student-element-row td {
+  .element-row td {
     border-bottom-width: 0;
   }
   
-  .student-element-detail {
+  .element-detail {
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -28,7 +28,7 @@ table {
     border-radius: 8px;
   }
   
-  .student-element-diagram {
+  .element-diagram {
     min-width: 80px;
     border: 2px solid black;
     padding: 8px;
@@ -37,16 +37,16 @@ table {
     height: 104px;
   }
   
-  .student-element-symbol {
+  .element-symbol {
     font-weight: bold;
     font-size: 40px;
     line-height: normal;
   }
   
-  .student-element-description {
+  .element-description {
     padding: 16px;
   }
   
-  .student-element-description-attribution {
+  .element-description-attribution {
     opacity: 0.5;
   }
